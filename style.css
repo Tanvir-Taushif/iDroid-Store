@@ -1,0 +1,47 @@
+/* Common Styles & Utilities */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+.button{
+    background-color: rgba(6, 101, 139, 0.658);
+    color: white;
+    border-radius:10px;
+}
+
+.span-name{
+    color: rgb(17, 136, 216);
+}
+
+
+/* Header Section */
+
+
+#nav>a{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    padding: 8px;
+}
+
+/* Image Slider Section */
+
+.slider-header{
+    height: 584px;
+}
+
+
+.banner{
+    color:gainsboro;
+    text-align: center;
+    width: 600px;
+    height: 230px;
+    margin-top: 7%;
+}
+
+/* Footer Section */
+#footer-text{
+    color: white;
+}
