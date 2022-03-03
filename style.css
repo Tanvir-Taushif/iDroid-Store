@@ -19,7 +19,7 @@ body{
 /* Header Section */
 
 
-#nav>a{
+.navButton{
     text-decoration: none;
     color: black;
     font-weight: 600;
@@ -56,7 +56,7 @@ body{
 
 
 /* Custom Animation */
-#nav>a:hover{
+.navButton:hover{
     color: rgb(17, 136, 216);
 }
 
