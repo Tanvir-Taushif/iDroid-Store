@@ -1,6 +1,6 @@
 //Search Function
 
-let searchKey; //Taking the value of the Searched Phone
+let searchKey; //Taking the value of the Searched Phone in a Global Variable
 const searchButton=()=>{
     const catagory=document.getElementById('input').value;
     document.getElementById('input').value='';
@@ -15,8 +15,17 @@ const searchButton=()=>{
 
 const searchResult= data =>{
     const searchResult=document.getElementById('search-result');
+    const noPhoneDetails=document.getElementById('details');
     searchResult.textContent='';
     const length=data.length;
+    //No Phone Found Text
+    if(length===0){
+        noPhoneDetails.innerHTML=`
+        <h3 style="color:red">Sorry!! No Phone found in this catagory.</h3>
+        `;
+        return;
+    }
+    noPhoneDetails.innerText='';
     data.slice(0,20).forEach(element => {
         const div=document.createElement('div');
         div.classList.add('col');
@@ -26,7 +35,7 @@ const searchResult= data =>{
                 <div class="card-body">
                   <h4 class="card-title fw-bold">${element.phone_name}</h4>
                   <h5 class="fw-bold">${element.brand}</h5><br>
-                  <button class="btn button">Details</button>
+                  <button onclick="showDetails('${element.slug}')" class="btn button">Details</button>
                 </div>
             </div>
         `;
@@ -42,6 +51,8 @@ const searchResult= data =>{
     }
 } 
 
+
+//Show more button
 const showMore=()=>{
     const url=`https://openapi.programming-hero.com/api/phones?search=${searchKey}`;
     fetch(url)
@@ -49,7 +60,7 @@ const showMore=()=>{
     .then(data => moreDisplay(data.data));
 }
 
-// Show More Function
+// Show More Display
 const moreDisplay=data=>{
     const searchResult=document.getElementById('search-result');
     const length=data.length;
@@ -62,13 +73,49 @@ const moreDisplay=data=>{
                 <div class="card-body">
                   <h4 class="card-title fw-bold">${element.phone_name}</h4>
                   <h5 class="fw-bold">${element.brand}</h5><br>
-                  <button class="btn button">Details</button>
+                  <button onclick="showDetails('${element.slug}')" class="btn button">Details</button>
                 </div>
             </div>
         `;
         searchResult.appendChild(div);
     });
-    const extraDiv=document.getElementById('extraSearch');
+    const extraDiv=document.getElementById('extraSearch'); //Removing the extra show more button
     const a=document.getElementById('moreButton');
     extraDiv.removeChild(a);
+}
+
+
+//Load Data Method
+const showDetails=id=>{
+    const url=`https://openapi.programming-hero.com/api/phone/${id}`;
+    fetch(url)
+    .then(res => res.json())
+    .then(data => loadData(data.data));
+}
+
+const loadData=data=>{
+    const detailsDiv=document.getElementById('details');
+    const div=document.createElement('div');
+    let rDate;
+    if(data.releaseDate==""){
+        rDate="No release date found!!";
+    }
+    else rDate=data.releaseDate;
+    
+    detailsDiv.textContent='';
+    div.innerHTML=`
+            <div class="p-2">
+              <img src="${data.image}" alt="">
+              <h3>${data.name}</h3>
+              <p>Release Date: ${rDate}</p>
+            </div><br>
+    `;
+    detailsDiv.appendChild(div);
+    for (const name in data.mainFeatures){
+        const p=document.createElement('div');
+        p.innerHTML=`
+        <p>${name}: ${data.mainFeatures[name]} .</p>
+        `;
+        detailsDiv.appendChild(p);
+    }
 }

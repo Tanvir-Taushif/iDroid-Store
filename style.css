@@ -48,7 +48,16 @@ body{
     width: 370px;
 }
 
+#details{
+    box-shadow: 2px 2px 20px;
+    width: 600px;
+    text-align: left;
+}
+
 /* Footer Section */
+footer{
+    background-color:rgb(11, 80, 126) ;
+}
 #footer-text{
     color: white;
 }
