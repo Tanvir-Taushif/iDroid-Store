@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Font Awesome Link -->
+    <script src="https://kit.fontawesome.com/87c1c58982.js" crossorigin="anonymous"></script>
+
     <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="bootstrap.min.css">
 
@@ -26,10 +29,11 @@
                 <p>Find your dream phone Online</p>
             </div>
         </div>
-        <div  class="d-flex mt-3" id="nav">
+        <div id="nav"  class="d-flex mt-3" id="nav">
             <a href="">Home</a>
             <a href="">iPhones</a>
             <a href="">Androids</a>
+            <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
         </div>
     </header>
 
@@ -84,7 +88,14 @@
           <div class="input-group mb-3 w-50 d-flex mx-auto">
             <input id="input" type="text" class="form-control" placeholder="Search your phone catagory" aria-label="Recipient's username" aria-describedby="button-addon2">
             <button onclick="searchButton()" class="button btn btn-outline-secondary" type="button" id="button-search">Search</button>
-          </div>
+          </div><br><br>
+
+
+          <!-- Searched Phone List -->
+
+          <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4">
+            
+          </div> <br> <br>
 
       </section>
     <!-- Footer Section -->

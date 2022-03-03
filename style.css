@@ -41,7 +41,25 @@ body{
     margin-top: 7%;
 }
 
+/* Card Section */
+.cards{
+    box-shadow: 1px 1px 20px;
+    height: 450px;
+    width: 370px;
+}
+
 /* Footer Section */
 #footer-text{
     color: white;
+}
+
+
+
+/* Custom Animation */
+#nav>a:hover{
+    color: rgb(17, 136, 216);
+}
+
+.cards:hover{
+    transform: scale(1.02);
 }
