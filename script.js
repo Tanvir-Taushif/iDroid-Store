@@ -1,7 +1,15 @@
+//Toggle Spinner
+const toggleSpinner=toggleType=>{
+    document.getElementById('spinner').style.display=toggleType;
+}
+
+
+
 //Search Function
 
 let searchKey; //Taking the value of the Searched Phone in a Global Variable
 const searchButton=()=>{
+    toggleSpinner('block');
     const catagory=document.getElementById('input').value;
     document.getElementById('input').value='';
     searchKey=catagory;
@@ -15,14 +23,16 @@ const searchButton=()=>{
 
 const searchResult= data =>{
     const searchResult=document.getElementById('search-result');
-    const noPhoneDetails=document.getElementById('details');
+    const noPhoneDetails=document.getElementById('noPhoneFound');
     searchResult.textContent='';
     const length=data.length;
+
     //No Phone Found Text
     if(length===0){
         noPhoneDetails.innerHTML=`
         <h3 style="color:red">Sorry!! No Phone found in this catagory.</h3>
         `;
+        toggleSpinner('none');
         return;
     }
     noPhoneDetails.innerText='';
@@ -49,6 +59,7 @@ const searchResult= data =>{
         `;
         extraDiv.appendChild(a);
     }
+    toggleSpinner('none');
 } 
 
 
@@ -94,6 +105,7 @@ const showDetails=id=>{
 }
 
 const loadData=data=>{
+    const goToDetails=document.getElementById
     const detailsDiv=document.getElementById('details');
     const div=document.createElement('div');
     let rDate;
@@ -105,16 +117,18 @@ const loadData=data=>{
     detailsDiv.textContent='';
     div.innerHTML=`
             <div class="p-2">
-              <img src="${data.image}" alt="">
-              <h3>${data.name}</h3>
-              <p>Release Date: ${rDate}</p>
+              <img class="p-3" src="${data.image}" alt="">
+              <h3 style="font-weight: 600;">${data.name}</h3>
+              <p style="font-weight: 600;">Release Date: ${rDate}</p>
             </div><br>
     `;
     detailsDiv.appendChild(div);
     for (const name in data.mainFeatures){
         const p=document.createElement('div');
+        p.classList.add('text-start');
+        p.classList.add('ms-2');
         p.innerHTML=`
-        <p>${name}: ${data.mainFeatures[name]} .</p>
+        <p style="font-weight: 600;"><span style="color:rgb(17, 136, 216) ;">${name}:</span> ${data.mainFeatures[name]} .</p>
         `;
         detailsDiv.appendChild(p);
     }

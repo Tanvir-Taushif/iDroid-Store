@@ -41,6 +41,12 @@ body{
     margin-top: 7%;
 }
 
+/* Spinner */
+#spinner{
+    color:rgb(17, 136, 216) ;
+    display: none;
+}
+
 /* Card Section */
 .cards{
     box-shadow: 1px 1px 20px;
@@ -51,7 +57,12 @@ body{
 #details{
     box-shadow: 2px 2px 20px;
     width: 600px;
-    text-align: left;
+    text-align: center;
+}
+
+#notFound{
+    box-shadow: none;
+    text-align: center;
 }
 
 /* Footer Section */
