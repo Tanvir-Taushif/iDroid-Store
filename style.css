@@ -60,6 +60,11 @@ body{
     text-align: center;
 }
 
+#details-link{
+    text-decoration: none;
+    color: white;
+}
+
 #notFound{
     box-shadow: none;
     text-align: center;
@@ -82,4 +87,18 @@ footer{
 
 .cards:hover{
     transform: scale(1.02);
+}
+
+
+/* Custom Media Query */
+@media (max-width: 600px){
+    .navButton{
+        display: none;
+    }
+    #banner-text>h1{
+        font-size: 12px;
+    }
+    #banner-text>p{
+        font-size: 7px;
+    }
 }

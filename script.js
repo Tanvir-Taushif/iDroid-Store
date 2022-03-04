@@ -24,7 +24,10 @@ const searchButton=()=>{
 const searchResult= data =>{
     const searchResult=document.getElementById('search-result');
     const noPhoneDetails=document.getElementById('noPhoneFound');
+    const detailsSection=document.getElementById('details');
     searchResult.textContent='';
+    noPhoneDetails.textContent='';
+    detailsSection.textContent='';
     const length=data.length;
 
     //No Phone Found Text
@@ -45,13 +48,13 @@ const searchResult= data =>{
                 <div class="card-body">
                   <h4 class="card-title fw-bold">${element.phone_name}</h4>
                   <h5 class="fw-bold">${element.brand}</h5><br>
-                  <button onclick="showDetails('${element.slug}')" class="btn button">Details</button>
+                  <button onclick="showDetails('${element.slug}')" class="btn button"><a id="details-link" href="#details-section">Details</a></button>
                 </div>
             </div>
         `;
         searchResult.appendChild(div);
     });
-    if(length>20){
+    if(length!=null && length>20){
         const extraDiv=document.getElementById('extraSearch');
         const a=document.createElement('div');
         extraDiv.innerHTML=`
@@ -84,7 +87,7 @@ const moreDisplay=data=>{
                 <div class="card-body">
                   <h4 class="card-title fw-bold">${element.phone_name}</h4>
                   <h5 class="fw-bold">${element.brand}</h5><br>
-                  <button onclick="showDetails('${element.slug}')" class="btn button">Details</button>
+                  <button onclick="showDetails('${element.slug}')" class="btn button"><a id="details-link" href="#details-section">Details</a></button>
                 </div>
             </div>
         `;
@@ -113,7 +116,7 @@ const loadData=data=>{
         rDate="No release date found!!";
     }
     else rDate=data.releaseDate;
-    
+    console.log(data);
     detailsDiv.textContent='';
     div.innerHTML=`
             <div class="p-2">
@@ -128,7 +131,16 @@ const loadData=data=>{
         p.classList.add('text-start');
         p.classList.add('ms-2');
         p.innerHTML=`
-        <p style="font-weight: 600;"><span style="color:rgb(17, 136, 216) ;">${name}:</span> ${data.mainFeatures[name]} .</p>
+        <p style="font-weight: 600;"><span style="color:rgb(17, 136, 216) ;">${name}:</span> ${data.mainFeatures[name]} .</p><hr>
+        `;
+        detailsDiv.appendChild(p);
+    }
+    for(const other in data.others){
+        const p=document.createElement('div');
+        p.classList.add('text-start');
+        p.classList.add('ms-2');
+        p.innerHTML=`
+        <p style="font-weight: 600;"><span style="color:rgb(17, 136, 216) ;">${other}:</span> ${data.others[other]} .</p><hr>
         `;
         detailsDiv.appendChild(p);
     }
