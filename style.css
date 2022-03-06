@@ -36,7 +36,6 @@ body{
 .banner{
     color:gainsboro;
     text-align: center;
-    width: 600px;
     height: 230px;
     margin-top: 7%;
 }
@@ -58,6 +57,7 @@ body{
     box-shadow: 2px 2px 20px;
     width: 600px;
     text-align: center;
+    overflow-wrap: break-word;
 }
 
 #details-link{
@@ -100,5 +100,13 @@ footer{
     }
     #banner-text>p{
         font-size: 8px;
+    }
+
+    #details{
+        width: 90%;
+    }
+
+    .cards{
+        width: 90%;
     }
 }
